@@ -1,0 +1,52 @@
+= CMS Service: Module documentation
+
+== Application Server Configuration
+
+=== Application Environment Configuration
+
+At startup, you must specify the path to the configuration file.
+
+If you are using weblogic, you must specify JVM arg for bootstrap configuration file (if using Spring cloud config):
+
+[source]
+-Dspring.config.location=file:<path-to-base-dir>/config/cms-service/bootstrap.yaml
+
+Additionally, you can specify the main configuration file, which is loaded after bootstrap.yaml
+
+[source]
+-Dspring.config.location=file:<path-to-base-dir>/config/cms-service/application.yaml
+
+In development mode you can run directly main class to start the server with embedded tomcat or also run via weblogic, using the dev configuration.
+It is necessary to specify in JVM argument ():
+
+[source]
+-Dspring.profiles.active=dev
+
+WARNING: with dev profile you don't need specify -Dspring.config.location option.
+
+IMPORTANT: by default spring-boot-tomcat-starter is provided dependency.
+Therefore, by running directly through the Main class, you must specify in the IDE "include dependencies with provided scope" option.
+
+=== JDBC Configuration
+
+If you are using weblogic datasource, this JNDI datasource must be available:
+
+`jdbc/postgres/cms-service`
+
+=== Logging configuration
+
+This module uses Log4j2 logging.
+
+Configuration file location:
+`<path-to-base-dir>/config/cms-service/log4j2.xml`
+
+To use them, specify this JVM option:
+
+[source]
+-Dlogging.config=<path-to-base-dir>/config/cms-service/log4j2.xml
+
+Otherwise, the file that is located in the resources will be used.
+
+Default configuration logs into two files located in `<path-to-base-dir>/logs/cms-service`:
+
+app.log:: standard output

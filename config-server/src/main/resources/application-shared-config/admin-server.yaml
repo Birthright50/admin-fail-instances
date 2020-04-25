@@ -1,0 +1,11 @@
+server:
+  port: 9999
+spring:
+  boot:
+    admin:
+      ui:
+        public-url: null # If running behind a reverse proxy (using path rewriting) this can be used to output correct self references.
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false

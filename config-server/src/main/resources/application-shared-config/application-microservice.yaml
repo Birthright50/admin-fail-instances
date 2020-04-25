@@ -1,0 +1,19 @@
+eureka:
+  instance:
+    # to allow SBA access this service
+    metadata-map:
+      user.name: "actuator"
+      user.password: "{cipher}0b542b1b9da7f14908128f946d1c28f651697559ae0fadf3124ceeb00a1e3916"
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+app-clients:
+  clients:
+    - username: actuator
+      password: "{cipher}0b542b1b9da7f14908128f946d1c28f651697559ae0fadf3124ceeb00a1e3916"
+      authorities: SYSTEM
+    - username: swagger
+      password: "{cipher}65a16efbee47cf1d2d98c367bd6142db8ba2fa365d8dfdb5c086b1b2ed7c9718"
+      authorities: ADMIN,BACKEND

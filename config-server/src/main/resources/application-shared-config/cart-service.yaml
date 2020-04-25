@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    include:
+      microservice, standalone
+  mvc:
+    formcontent:
+      filter:
+        enabled: false
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+---
+spring:
+  profiles: standalone
+server:
+  port: 8082

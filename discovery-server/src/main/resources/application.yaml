@@ -1,0 +1,6 @@
+server:
+  port: ${DISCOVERY_SERVER_PORT:8761}
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false

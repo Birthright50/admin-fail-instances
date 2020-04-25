@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: discovery-server
+  security:
+    user:
+      name: ${EUREKA_USERNAME:eureka}
+      password: ${EUREKA_PASSWORD:password}
+      roles: ADMIN
+# by default every Eureka Server is also an Eureka Client and requires (at least one) service URL to locate a peer.
+eureka:
+  instance:
+    prefer-ip-address: true
+    #     to allow SBA access this service
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: ${DISCOVERY_SERVER_URL:http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/}
+  server:
+      waitTimeInMsWhenSyncEmpty: 0

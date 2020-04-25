@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    config:
+      discovery:
+        enabled: true
+      server:
+        git:
+          uri: ${CONFIG_GIT_URL:https://github.com/p.git}
+          username: ${CONFIG_GIT_USERNAME}
+          password: ${CONFIG_GIT_PASSWORD}
+        native:
+          search-locations: ${CONFIG_FILES_PATH:classpath:/application-shared-config}
+  profiles:
+    active: ${CONFIG_PROFILE:native} #git
+server:
+  port: ${CONFIG_SERVER_PORT:8888}
+
+management:
+  endpoints:
+    web.exposure.include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
